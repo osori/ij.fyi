@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>JSFiddle 8c63kxyz</title>
+  <title>Create a responsive HTML page with a clickable area that opens a new tab with a Safe Browsing test site.</title>
 
   <style>
     
@@ -14,67 +14,89 @@
   
 </head>
 <body>
-  
-<!DOCTYPE html>
-<p>This site opens a popup and navigates this page automatically to a cross origin site.
-You can choose if you want to open the popup first, or navigate first.
-<br>
-<button onclick='windowOpenAndNavigate()'>Popup and then navigate!</button>
-<br>
-<button onclick='navigateAndWindowOpen()'>Navigate and then Popup!</button>
-<br>
-<button onclick='ctrlNavigateAndWindowOpen()'>Simulate Ctrl Navigate and then Popup!</button>
-<br>
-<button onclick='metaNavigateAndWindowOpen()'>Simulate Meta Navigate and then Popup!</button>
-<br>
-<button onclick='shiftNavigateAndWindowOpen()'>Simulate Shift Navigate and then Popup!</button>
-<br>
+  <!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Centered popup button</title>
+  <style>
+    html, body { height: 100%; margin: 0; }
+    /* Big buffer around the centered area */
+    :root { --buffer: clamp(32px, 8vmin, 96px); }
 
-<a href="https://testsafebrowsing.appspot.com">site with no engagemenet</a>
-<a href="/">Home</a>
-<a id="dispatcher" href="/">Home and dispatch a window.open in setTimeout</a>
-<script>
-function navigateAndWindowOpen() {
-  document.getElementsByTagName('a')[0].click();
-  window.open(location.href);
-}
+    .hero {
+      min-height: 100svh;           /* use small viewport unit for mobile toolbars */
+      display: grid;
+      place-items: center;           /* perfect center */
+      padding: var(--buffer);        /* generous breathing room */
+      box-sizing: border-box;
+    }
 
-function windowOpenAndNavigate() {
-  var opened = !!window.open(location.href);
-  document.getElementsByTagName('a')[0].click();
-}
+    .hero button {
+      font: inherit;
+      padding: 1rem 1.25rem;
+      border: 0;
+      border-radius: 12px;
+      cursor: pointer;
+      box-shadow: 0 8px 30px rgba(0,0,0,.12);
+    }
+  </style>
+</head>
+<body>
 
-function ctrlNavigateAndWindowOpen() {
-  var evt = new MouseEvent('click', {
-    view : window,
-    ctrlKey: true
-  });
-  document.getElementsByTagName('a')[0].dispatchEvent(evt);
-  window.open(location.href);
-}
-function metaNavigateAndWindowOpen() {
-  var evt = new MouseEvent('click', {
-    view : window,
-    metaKey: true
-  });
-  document.getElementsByTagName('a')[0].dispatchEvent(evt);
-  window.open(location.href);
-}
-function shiftNavigateAndWindowOpen() {
-  var evt = new MouseEvent('click', {
-    view : window,
-    shiftKey: true
-  });
-  document.getElementsByTagName('a')[0].dispatchEvent(evt);
-  window.open(location.href);
-}
+  <!-- Centered, buffered button -->
+  <div class="hero">
+    <button onclick="windowOpenAndNavigate()">Popup and then navigate!</button>
+  </div>
 
-document.getElementById("dispatcher").addEventListener("click", (e) => {
-  setTimeout(() => window.open("/"), 0);
-});
+  <!-- Your existing content can follow normally -->
+  <p>This site opens a popup and navigates this page automatically to a cross origin site.
+  You can choose if you want to open the popup first, or navigate first.</p>
 
-</script>
+  <button onclick='navigateAndWindowOpen()'>Navigate and then Popup!</button>
+  <br>
+  <button onclick='ctrlNavigateAndWindowOpen()'>Simulate Ctrl Navigate and then Popup!</button>
+  <br>
+  <button onclick='metaNavigateAndWindowOpen()'>Simulate Meta Navigate and then Popup!</button>
+  <br>
+  <button onclick='shiftNavigateAndWindowOpen()'>Simulate Shift Navigate and then Popup!</button>
+  <br>
 
+  <a href="https://testsafebrowsing.appspot.com">site with no engagement</a>
+  <a href="/">Home</a>
+  <a id="dispatcher" href="/">Home and dispatch a window.open in setTimeout</a>
+
+  <script>
+    function navigateAndWindowOpen() {
+      document.getElementsByTagName('a')[0].click();
+      window.open(location.href);
+    }
+    function windowOpenAndNavigate() {
+      var opened = !!window.open(location.href);
+      document.getElementsByTagName('a')[0].click();
+    }
+    function ctrlNavigateAndWindowOpen() {
+      var evt = new MouseEvent('click', { view: window, ctrlKey: true });
+      document.getElementsByTagName('a')[0].dispatchEvent(evt);
+      window.open(location.href);
+    }
+    function metaNavigateAndWindowOpen() {
+      var evt = new MouseEvent('click', { view: window, metaKey: true });
+      document.getElementsByTagName('a')[0].dispatchEvent(evt);
+      window.open(location.href);
+    }
+    function shiftNavigateAndWindowOpen() {
+      var evt = new MouseEvent('click', { view: window, shiftKey: true });
+      document.getElementsByTagName('a')[0].dispatchEvent(evt);
+      window.open(location.href);
+    }
+    document.getElementById("dispatcher").addEventListener("click", () => {
+      setTimeout(() => window.open("/"), 0);
+    });
+  </script>
+</body>
+</html>
 
 
   <script>
@@ -82,3 +104,10 @@ document.getElementById("dispatcher").addEventListener("click", (e) => {
   </script>
 </body>
 </html>
+
+
+
+
+
+
+
