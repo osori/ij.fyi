@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Create a responsive HTML page with a clickable area that opens a new tab with a Safe Browsing test site.</title>
+
+  <style>
+    
+  </style>
+
+  
+</head>
+<body>
+  <!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Click anywhere to open a new tab</title>
+    <style>
+      html, body { height: 100%; margin: 0; }
+      .cover-link {
+        position: fixed;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        font-family: system-ui, -apple-system, Segoe UI, Roboto, Noto Sans, Ubuntu, Cantarell, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+        font-size: 1.125rem;
+        line-height: 1.4;
+      }
+      .cover-link:focus-visible {
+        outline: 3px solid #4b9cff;
+        outline-offset: 4px;
+      }
+      .msg {
+        padding: 1rem 1.25rem;
+        border-radius: 12px;
+        box-shadow: 0 2px 16px rgba(0,0,0,.08);
+      }
+    </style>
+  </head>
+  <body>
+    <a
+      class="cover-link"
+      href="https://testsafebrowsing.appspot.com/"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Open the test Safe Browsing site in a new tab by clicking anywhere"
+    >
+      <div class="msg">
+        Click anywhere to open<br /><strong
+          >testsafebrowsing.appspot.com</strong
+        >
+        in a new tab.
+      </div>
+    </a>
+  </body>
+</html>
+
+
+  <script>
+    
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+
